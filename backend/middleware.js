@@ -16,7 +16,8 @@ const authmiddleware = (req,res,next) =>{
     try{
         const decode = jwt.verify(token,JWT_Token);
         if(decode){
-            req.id = decode.id
+            req.id = decode.id 
+            
             next()
         }
         else{
