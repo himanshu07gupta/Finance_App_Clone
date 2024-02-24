@@ -3,8 +3,8 @@ const { JWT_Token } = require("./config");
 const jwt = require("jsonwebtoken")
 
 const authmiddleware = (req,res,next) =>{
-    const authheader = req.header.authorization
-
+    const authheader = req.Headers.authorization
+    
     if(!authheader || !authheader.StartWith('Bearer')){
         return res.status(401).json({
             message : "no token"
@@ -25,4 +25,8 @@ const authmiddleware = (req,res,next) =>{
     }catch(err){
         return res.status(403).send("something wrong")
     }
+}
+
+module.exports={
+    authmiddleware
 }

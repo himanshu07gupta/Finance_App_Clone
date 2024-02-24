@@ -5,6 +5,7 @@ const z = require("zod")
 const {JWT_Token} = require("../config")
 const {userschema} = require("../db")
 const {checkuser_structure} = require("../zod_validation")
+const {authmiddleware} = require("../middleware")
 
 router.post("/signup", async function(req,res){
     const user_data = req.body
@@ -43,6 +44,9 @@ router.post("/signup", async function(req,res){
     })
 })
 
+
+//////////////////////////////////////////////////////////
+// router sign
 const sigin_schema = z.object({
      email : z.string().email(),
      password : z.string().min(6)
@@ -78,7 +82,24 @@ router.post("/signin", async function(req,res){
     
 })
 
+/////////////////////////////////////////////
+// router update
+// const update_schema = z.object({
+//     email :z.string().email(),
+//     firstname : string(),
+//     lastname : string(),
+//     password: string()
+// })
+router.put("/update",authmiddleware, async function(req,res){
+     const check = checkuser_structure.safeParse(req.body);
+     if(!check.success){
+        return res.status(401).send("wrong input")
+}
 
+     await userschema.updateOne({id:req.id},req.body);
+
+     res.send("data is updated successfully")
+})
 
 
 module.exports ={
