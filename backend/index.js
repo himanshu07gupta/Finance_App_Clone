@@ -6,7 +6,6 @@ const cors = require("cors");
 app.use(cors())
 app.use(express.json())
 
+app.use("/netbanking/v1",mainrouter.router)
 
-
-app.use("/paytm/v1",mainrouter.router)
 app.listen(3000)
