@@ -46,7 +46,7 @@ const Userlist = ({user})=>{
                 </div>
 
                 <div className="flex flex-col justify-center h-full">
-                    <Button label="send money" onClick={onclick}></Button>
+                    <Button label="send money" ></Button>
                 </div>
 
              </div>
