@@ -5,6 +5,6 @@
 // }
 export const Heading = ({ text }) => {
     return (
-      <h1 className="text-4xl font-bold text-gray-800">{text}</h1>
+      <h1 className="text-4xl font-bold text-gray-800 ">{text}</h1>
     );
   };
