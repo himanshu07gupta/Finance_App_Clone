@@ -5,6 +5,7 @@ import { BrowserRouter,Routes,Route} from 'react-router-dom'
 import { Signup } from "./pages/signup"
 import {Signin} from "./pages/signin"
 import { Dashbord } from './pages/dashbord'
+import { SendMoney } from './pages/sendmoney'
 Dashbord
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
                   <Route path="/signup" element={<Signup></Signup>}></Route>
                   <Route path="/signin" element={<Signin></Signin>}></Route>
                   <Route path= "/dashbord" element={<Dashbord></Dashbord>}></Route>
+                  <Route path="/send" element={<SendMoney></SendMoney>}></Route>
               </Routes>
       </BrowserRouter>
 
