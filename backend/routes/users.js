@@ -13,7 +13,7 @@ router.post("/signup", async function(req,res){
     const validate = checkuser_structure.safeParse(user_data);
     if((!validate.success))
     { return res.status(411).json({
-     message : "incorrect user data type"
+     message : "incorrect user data type" 
  })}
     
     const check_user = await userschema.findOne({
@@ -45,7 +45,8 @@ router.post("/signup", async function(req,res){
 
     res.json({
         message : "data is added succesfully",
-        token : token
+        firstname : user_data.fname,
+        token : "Bearer "+token
     })
 })
 
