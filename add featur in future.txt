@@ -2,4 +2,4 @@ add logout
 add topbar link one by one
 
 -/me end poitn  if token id valid then dashbord
-else signup page 
+else signup page fa
