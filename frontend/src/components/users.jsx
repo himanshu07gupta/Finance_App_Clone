@@ -1,13 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "./button"
+import { Link, useNavigate } from "react-router-dom"
 
 
 export const Users = () => {
-      const [users,setusers] = useState([{
-        firstname : "Himanshu",
-        lastname : "Gupta",
-        _id  :1
-      }])
+      const [users,setusers] = useState([])
+      const [filter,setfilter] = useState()
+
+      useEffect(()=>{
+        fetch("http://localhost:3000/netbanking/v1/user/bulk?filter="+filter)
+        .then(async function(response){
+            let data = await response.json();
+            setusers(data.users)
+        })
+        
+        
+      },[filter])
        
        return <div>
         <div className="font-bold mt-6 text-lg">
@@ -15,12 +23,14 @@ export const Users = () => {
         </div>
 
         <div className="my-2">
-            <input type="text" placeholder="search users.." className="w-full px-2 py-1 border rounded border-slate-200" />
+            <input onChange={function(e){
+                setfilter(e.target.value)
+            }}  type="text" placeholder="search users.." className="w-full px-2 py-1 border rounded border-slate-200" />
         </div>
 
         <div>
             {users.map(function(user){
-                    return (<Userlist key={user._id} user={user}></Userlist>)
+                    return (<Userlist key={user.id} user={user}></Userlist>)
             })}
         </div>
        </div>
@@ -28,6 +38,7 @@ export const Users = () => {
 
 
 const Userlist = ({user})=>{
+      const navigate = useNavigate()
      return  <div className="flex justify-between">
                 <div className="flex">         
                         
@@ -46,7 +57,9 @@ const Userlist = ({user})=>{
                 </div>
 
                 <div className="flex flex-col justify-center h-full">
-                    <Button label="send money" ></Button>
+                    <Button label="send money" onClick={function(){
+                       navigate("/send?id="+user.id+"&firstname="+user.firstname)
+                    }}></Button>
                 </div>
 
              </div>
