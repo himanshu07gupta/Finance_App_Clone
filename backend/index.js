@@ -8,4 +8,4 @@ app.use(express.json())
 
 app.use("/netbanking/v1",mainrouter.router)
 
-app.listen(3000)
+app.listen(3000) 
