@@ -18,8 +18,6 @@ Clone the repository: git clone <repository-url>
 
 Install dependencies: npm install
 
-Configure environment variables (if necessary).
-
 Set up MongoDB database.
 
 Run the server: npm start
